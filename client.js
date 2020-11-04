@@ -39,6 +39,17 @@ const employees = [
 
 // This is not a race. Everyone on your team should understand what is happening.
 // Ask questions when you don't.
+$(document).ready(readyNow);
+
+function readyNow(){
+  let el = $('#bonusesOut');
+    el.empty();
+  for (worker of bonuses){
+    el.append(`<li>Name: ${worker.name} Percentage: ${worker.bonusPercentage} Total Bonus: ${worker.totalBonus} Total Compensation: ${worker.totalCompensation}</li>`);
+  }
+}//end readyNow
+
+  
 
 console.log( employees );
 
@@ -74,13 +85,12 @@ function bonusCalc(object){
   console.log(Number(object.annualSalary));
 
   workerBonus.totalCompensation = Number(object.annualSalary) + workerBonus.totalBonus;
-
+  workerBonus.totalCompensation.toFixed(2);
   return workerBonus;
-}
-
+}//end bonusCalc
 
 for(let worker of employees){
   bonuses.push(bonusCalc(worker));
-};
+}
 
-console.log(bonuses);
+ 
