@@ -41,3 +41,46 @@ const employees = [
 // Ask questions when you don't.
 
 console.log( employees );
+
+const maxBonus = .13;
+const minBonus = 0;
+let bonuses = [];
+
+function bonusCalc(object){
+  let workerBonus = {};
+  workerBonus.name = object.name;
+  if (object.reviewRating < 2) {
+    workerBonus.bonusPercentage = 0;
+  } else if (object.reviewRating === 3){
+    workerBonus.bonusPercentage = .04;
+  } else if (object.reviewRating === 4){
+    workerBonus.bonusPercentage = .06;
+  } else if (object.reviewRating === 5){
+    workerBonus.bonusPercentage = .10;
+  } 
+  if (object.employeeNumber.length === 4){
+    (workerBonus.bonusPercentage += .05).toFixed(2);
+  } 
+  if (Number(object.annualSalary) > 65000) {
+    (workerBonus.bonusPercentage -= .01).toFixed(2);
+  }
+  if (workerBonus.bonusPercentage > maxBonus){
+    workerBonus.bonusPercentage = maxBonus;
+  }
+  if (workerBonus.bonusPercentage < minBonus){
+    workerBonus.bonusPercentage = minBonus;
+  }
+  workerBonus.totalBonus = Number(object.annualSalary)* workerBonus.bonusPercentage;
+  console.log(Number(object.annualSalary));
+
+  workerBonus.totalCompensation = Number(object.annualSalary) + workerBonus.totalBonus;
+
+  return workerBonus;
+}
+
+
+for(let worker of employees){
+  bonuses.push(bonusCalc(worker));
+};
+
+console.log(bonuses);
