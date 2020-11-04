@@ -39,6 +39,9 @@ const employees = [
 
 // This is not a race. Everyone on your team should understand what is happening.
 // Ask questions when you don't.
+
+//Worked on by Jordan Newberry and Steven Maloney
+
 $(document).ready(readyNow);
 
 function readyNow(){
